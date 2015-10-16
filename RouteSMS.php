@@ -4,7 +4,6 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 
-
 class RouteSMS
 {
     /**
@@ -52,21 +51,21 @@ class RouteSMS
     }
 
     /**
-     * @param int $recipient
      * @param string $sender
+     * @param int $recipient
      * @param string $message
      * @param int $type
      * @param int $dlr
      * @throws Exception
      */
-    public function send($recipient, $sender, $message, $type=0, $dlr=1)
+    public function send($sender, $recipient, $message, $type=0, $dlr=1)
     {
-        if (!$recipient || !is_numeric($recipient)) {
+        if (!$recipient || !is_numeric(trim($recipient))) {
             throw new Exception('Recipient is required and must be numeric');
         }
 
-        if (!$sender || strlen($sender) > 11) {
-            throw new Exception('Sender is required and character must not exceed 11 characters');
+        if (!$sender || strlen($sender) > 18) {
+            throw new Exception('Sender is required and must not exceed 11 characters');
         }
 
         if (!$message) {
@@ -79,9 +78,9 @@ class RouteSMS
                 'password' => $this->password,
                 'type' => $type,
                 'dlr' => $dlr,
-                'destination' => $recipient,
+                'destination' => trim($recipient),
                 'source' => $sender,
-                'message' => $message
+                'message' => trim($message)
             ];
 
             $url = 'bulksms?' . http_build_query($fragment);
