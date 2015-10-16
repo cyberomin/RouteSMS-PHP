@@ -61,6 +61,18 @@ class RouteSMS
      */
     public function send($recipient, $sender, $message, $type=0, $dlr=1)
     {
+        if (!$recipient || !is_numeric($recipient)) {
+            throw new Exception('Recipient is required and must be numeric');
+        }
+
+        if (!$sender || strlen($sender) > 11) {
+            throw new Exception('Sender is required and character must not exceed 11 characters');
+        }
+
+        if (!$message) {
+            throw new Exception('Message is required');
+        }
+
         if ($recipient && $sender && $message) {
             $fragment = [
                 'username' => $this->username,
