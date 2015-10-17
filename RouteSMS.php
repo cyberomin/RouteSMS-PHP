@@ -64,8 +64,10 @@ class RouteSMS
             throw new Exception('Recipient is required and must be numeric');
         }
 
-        if (!$sender || strlen($sender) > 18) {
-            throw new Exception('Sender is required and must not exceed 11 characters');
+        if (!$sender ||
+            (is_numeric($sender) && strlen($sender) > 11) ||
+            (ctype_alnum($sender) && strlen($sender) > 18)) {
+            throw new Exception('Sender is required and must not exceed 11 numerals or 18 for alphanumeric characters');
         }
 
         if (!$message) {
