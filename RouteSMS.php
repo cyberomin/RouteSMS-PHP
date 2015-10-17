@@ -27,7 +27,7 @@ class RouteSMS
     private $client;
 
     /**
-     * Successful message
+     * Status constants
      */
     const SUCCESS = 1701;
     const INVALID_USERNAME_PASSWORD = 1703;
