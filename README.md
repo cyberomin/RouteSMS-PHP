@@ -5,7 +5,7 @@ A modular PHP library for interacting with RouteSMS.
 ######Installation
 You will need composer in other to use this library. Head over to [Composer](https://getcomposer.org) to get started.
 
-```php
+```
 git clone git@github.com:cyberomin/RouteSMS-PHP.git
 
 composer update
@@ -22,7 +22,7 @@ echo $result; //success
 
 If message is successful, you will get a `success` response else an exception will be thrown.
 
-$type: Indicates the type of message.
+*$type:* Indicates the type of message.
 Values for "type":-
 0: Plain Text (GSM 3.38 Character encoding)
 1: Flash Message (GSM 3.38 Character encoding)
@@ -33,12 +33,12 @@ Values for "type":-
 6: Unicode Flash
 7: Flash Message (ISO-8859-1 Character encoding)
 
-$dlr: Indicates whether the client wants delivery report for this message
+*$dlr:* Indicates whether the client wants delivery report for this message
 Range of values for "dlr":-
 0: No Delivery report required
 1: Delivery report required 
 
-sender: The source address that should appear in the message
+*$sender:* The source address that should appear in the message
 Max Length of 18 if Only Numeric
 Max Length of 11 if Alpha numeric
 If you wish plus ('+') should be prefixed to the sender address when the message is displayed
